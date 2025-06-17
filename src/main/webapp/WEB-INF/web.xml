@@ -5,6 +5,15 @@
          version="4.0">
     <response-character-encoding>UTF-8</response-character-encoding>
     <!-- определение servlet'а -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/spring-config.xml
+        </param-value>
+    </context-param>
     <servlet>
         <servlet-name>main</servlet-name>
         <servlet-class>ru.netology.servlet.MainServlet</servlet-class>
