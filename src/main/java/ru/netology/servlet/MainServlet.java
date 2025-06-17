@@ -14,7 +14,6 @@ public class MainServlet extends HttpServlet {
 
   @Override
   public void init() {
-    // Получаем Spring контекст из слушателя
     ApplicationContext springContext = (ApplicationContext) getServletContext().getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
     controller = springContext.getBean(PostController.class);
   }
