@@ -1,6 +1,8 @@
 package ru.netology.controller;
 
 import com.google.gson.Gson;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import ru.netology.model.Post;
 import ru.netology.service.PostService;
 import ru.netology.exception.NotFoundException;
