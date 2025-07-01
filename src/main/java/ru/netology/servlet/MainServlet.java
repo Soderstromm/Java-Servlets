@@ -1,7 +1,7 @@
 package ru.netology.servlet;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.netology.controller.PostController;
 
 import javax.servlet.http.HttpServlet;
@@ -14,17 +14,14 @@ public class MainServlet extends HttpServlet {
 
   @Override
   public void init() {
-    ApplicationContext springContext = (ApplicationContext) getServletContext().getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
+    ApplicationContext springContext = new ClassPathXmlApplicationContext("/WEB-INF/spring-config.xml");
     controller = springContext.getBean(PostController.class);
   }
-
   @Override
   protected void service(HttpServletRequest req, HttpServletResponse resp) {
-    // если деплоились в root context, то достаточно этого
     try {
       final var path = req.getRequestURI();
       final var method = req.getMethod();
-      // primitive routing
       if (method.equals("GET") && path.equals("/api/posts")) {
         controller.all(resp);
         return;

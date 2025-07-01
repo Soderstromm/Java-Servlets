@@ -5,11 +5,17 @@
            http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean class="org.springframework.context.annotation.AnnotationConfigApplicationContext">
-        <constructor-arg>
-            <list>
-                <value>ru.netology.config.AppConfig</value>
-            </list>
-        </constructor-arg>
+    <!-- Repository -->
+    <bean id="postRepository" class="ru.netology.repository.PostRepository"/>
+
+    <!-- Service -->
+    <bean id="postService" class="ru.netology.service.PostService">
+        <constructor-arg ref="postRepository"/>
     </bean>
+
+    <!-- Controller -->
+    <bean id="postController" class="ru.netology.controller.PostController">
+        <constructor-arg ref="postService"/>
+    </bean>
+
 </beans>
